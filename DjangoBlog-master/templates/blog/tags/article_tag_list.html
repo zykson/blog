@@ -1,0 +1,15 @@
+{% if article_tags_list %}
+  <!-- Tags-->
+<div class="card rounded-0 border-0 mb-4">
+    <div class="card-body p-0">
+        <h2 class="h5 mb-3"> Tags </h2>
+        <ul class="list-inline">
+            {% for url,count,tag,color in article_tags_list %}
+                <li class="list-inline-item my-1 mr-2">
+                    <a class="label label-{{ color }}" style="display: inline-block;" href="{{ url }}" title="{{ tag.name }}">{{ tag.name }} <span class="badge">{{ count }}</span></a>
+                </li>
+           {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endif %}

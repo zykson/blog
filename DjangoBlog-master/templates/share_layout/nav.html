@@ -1,0 +1,83 @@
+{% load static %}
+  <header class="header">                   
+    <nav class="navbar navbar-expand-lg navbar-light py-4 index-forward bg-white">
+      <div class="container d-flex justify-content-center justify-content-lg-between align-items-center">
+        <ul class="list-inline small mb-0 text-dark d-none d-lg-block">
+          <li class="list-inline-item"><a class="reset-anchor" href="https://m.facebook.com/tahtoria/"><i class="fab fa-facebook-f"></i></a></li>
+          <li class="list-inline-item"><a class="reset-anchor" href="https://mobile.twitter.com/yeah_thats_vhee"><i class="fab fa-twitter"></i></a></li>
+          <li class="list-inline-item"><a class="reset-anchor" href="https://www.instagram.com/yeah_thats_vhee"><i class="fab fa-instagram"></i></a></li>
+          <li class="list-inline-item"><a class="reset-anchor" href="#"><i class="fab fa-linkedin"></i></a></li>
+          <li class="list-inline-item"><a class="reset-anchor" href="#"><i class="fab fa-youtube"></i></a></li>
+        </ul><a class="navbar-brand" href="/"><img src = "{% static 'blog/img/vector/isolated-monochrome-black.svg' url %}" alt="..." width="70"></a><a class="reset-anchor text-small mb-0 h6 d-none d-lg-block" href="mailto:thatsvhee@vheeblog.com"><i class="far fa-envelope mr-2 text-primary"></i>Vhee@email.com</a>
+      </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-light border-top border-bottom border-light">
+      <div class="container">
+        <ul class="list-inline small mb-0 text-dark d-block d-lg-none">
+          <li class="list-inline-item"><a class="reset-anchor" href="https://m.facebook.com/tahtoria/"><i class="fab fa-facebook-f"></i></a></li>
+          <li class="list-inline-item"><a class="reset-anchor" href="https://mobile.twitter.com/yeah_thats_vhee"><i class="fab fa-twitter"></i></a></li>
+          <li class="list-inline-item"><a class="reset-anchor" href="https://www.instagram.com/yeah_thats_vhee"><i class="fab fa-instagram"></i></a></li>
+          <li class="list-inline-item"><a class="reset-anchor" href="#"><i class="fab fa-linkedin"></i></a></li>
+          <li class="list-inline-item"><a class="reset-anchor" href="#"><i class="fab fa-youtube"></i></a></li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="menu-%e8%8f%9c%e5%8d%95-container">
+            <ul id="menu-%e8%8f%9c%e5%8d%95" class="nav-menu navbar-nav mx-auto">
+                <li id="menu-item-3498"
+                    class="nav-item menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-3498">
+                  <a class="nav-link active" href="/">Home</a></li>
+                {% load blog_tags %}
+                {% query nav_category_list parent_category=None as root_categorys %}
+                {% for node in root_categorys %}
+                    {% include 'share_layout/nav_node.html' %}
+                {% endfor %}
+                {% if nav_pages %}
+                    {% for node in nav_pages %}
+                        <li id="menu-item-{{ node.pk }}"
+                            class="nav-item menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-{{ node.pk }}">
+                            <a a class="nav-link active"  href="{{ node.get_absolute_url }}">{{ node.title }}</a>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+                
+            </ul>
+        </div>
+      </div>
+    </nav>
+</header>
+
+
+<section class="pb-5">
+    <div class="container pb-4">
+      {% if sidebar_categorys %}
+        <div class="row mb-5 pb-4">
+          {% for c in sidebar_categorys %}
+          <div class="col-lg-4 mb-4 mb-lg-0"><a class="category-block bg-center bg-cover" style="background: url({% static 'blog/img/category-bg-1.jpg' %})" href="{{ c.get_absolute_url }}"><span class="category-block-title">{{ c.name }}</span></a></div>
+          <div class="col-lg-4 mb-4 mb-lg-0"><a class="category-block bg-center bg-cover" style="background: url({% static 'blog/img/category-bg-2.jpg' %})" href="{{ c.get_absolute_url }}"><span class="category-block-title">{{ c.name }}</span></a></div>
+          <div class="col-lg-4"><a class="category-block bg-center bg-cover" style="background: url({% static 'blog/img/category-bg-3.jpg' %})" href="{{ c.get_absolute_url }}"><span class="category-block-title">{{ c.name }}</span></a></div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <!-- New
+      <!-- Newsletter-->
+      <div class="p-4 bg-light">
+        <div class="row align-items-center p-lg-3">
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <h2 class="h3 mb-1">Subscribe to my newsletter</h2>
+            <p class="mb-0 text-small">To subscribe to vhee newsletter enter your email here.</p>
+          </div>
+          <div class="col-lg-6">
+            <form action="#">
+              <div class="input-group">
+                <input class="form-control" type="search" placeholder="Enter your email address" aria-label="email address" aria-describedby="button-addon2">
+                <div class="input-group-append ml-2">
+                  <button class="btn btn-primary" id="button-addon2" type="submit">Subscribe</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,59 @@
+{% load static %}
+
+<footer id="colophon" role="contentinfo" class="py-4" style="background: #111">
+    <div class="container text-center">
+      {% if request.user.is_staff %} 
+    <div class="site-info" style="text-align: center">
+        Copyright&copy;&nbsp;{{ CURRENT_YEAR }}&nbsp;
+        <a href="/" target="blank">{{ SITE_NAME }}</a>
+        &nbsp;|&nbsp;
+
+        <a href="/sitemap.xml" title="SiteMap" target="_blank">
+            SiteMap
+        </a>
+        &nbsp;|&nbsp;
+        <a href="/feed" title="RSS Feed" target="_blank">
+            RSS Feed
+        </a>
+        &nbsp;|&nbsp;
+        
+    </div>
+
+    {% if BEIAN_CODE %}
+    <div class="site-info" style="text-align: center">
+        <a href="https://beian.miit.gov.cn/" rel="nofollow" target="_blank">
+            <p style=" height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">
+                {{ BEIAN_CODE }}
+            </p>
+        </a>
+        {% if BEIAN_CODE_GONGAN and SHOW_GONGAN_CODE %}
+            {{ BEIAN_CODE_GONGAN |safe }}
+        {% endif %}
+    </div>
+    {% endif %}
+    {% if ANALYTICS_CODE %}
+    {{ ANALYTICS_CODE| safe }}
+    {% endif %}
+{% else %}
+{% endif %}
+
+      <div class="row align-items-center">
+        <div class="col-md-4 text-lg-left"><img src="{% static 'blog/img/vector/default.svg' url %}" alt=" ..." width="120"></div>
+        <div class="col-md-4 text-center">
+          <div class="d-flex align-items-center flex-wrap justify-content-center">
+            <h6 class="text-muted mb-0 py-2 mr-3">Follow me @Vhee<span class="ml-3"></span></h6>
+            <ul class="list-inline small mb-0 text-white">
+              <li class="list-inline-item"><a class="reset-anchor" href="https://m.facebook.com/tahtoria/"><i class="fab fa-facebook-f"></i></a></li>
+              <li class="list-inline-item"><a class="reset-anchor" href="https://mobile.twitter.com/yeah_thats_vhee"><i class="fab fa-twitter"></i></a></li>
+              <li class="list-inline-item"><a class="reset-anchor" href="https://www.instagram.com/yeah_thats_vhee"><i class="fab fa-instagram"></i></a></li>
+              <li class="list-inline-item"><a class="reset-anchor" href="#"><i class="fab fa-linkedin"></i></a></li>
+              <li class="list-inline-item"><a class="reset-anchor" href="#"><i class="fab fa-youtube"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4 text-lg-right">
+          <p class="mb-0 text-muted text-small text-heading">Template designed by <a href="https://bootstraptemple.com/p/juliette" class="text-reset">Bootstrap Temple</a>. </p>
+        </div>
+      </div>
+    </div>
+  </footer>

@@ -1,0 +1,49 @@
+<div id="comments" class="comments-area">
+
+    <div id="respond" class="comment-respond">
+        <h3 id="reply-title" class="comment-reply-title">Post a comment
+            <small><a rel="nofollow" id="cancel-comment-reply-link" href="/wordpress/?p=3786#respond"
+                      style="display:none;">Cancel reply</a></small>
+        </h3>
+        <h3 class="h4 mb-4">Leave a comment</h3>
+        <form action="{% url 'comments:postcomment' article.pk %}" method="post" id="commentform"
+              class="comment-form mb-5">{% csrf_token %}
+            <div class="row">
+                <div class="form-group col-lg-6">
+                    {% if not form.name.is_hidden %}
+                        {{ form.name.label_tag }}
+                    {% endif %}
+                    {{ form.name }}
+                    {{ form.name.errors }}
+                </div>
+
+                <div class="form-group col-lg-6">
+                    {% if not form.email.is_hidden %}
+                        {{ form.email.label_tag }}
+                    {% endif %}
+                    {{ form.email }}
+                    {{ form.email.errors }}
+                </div>
+          
+                <div class="form-group col-lg-12"> 
+                    {{ form.body.label_tag }}
+
+                    {{ form.body }}
+                    {{ form.body.errors }}
+                </div>
+            {{ form.parent_comment_id }}
+            <div class="form-submit">
+                <span class="comment-markdown"> Support markdown</span>
+                <input name="submit" type="submit" id="submit" class="submit" value="Post a comment"/>
+                <small class="cancel-comment" id="cancel_comment" style="display: none">
+                    <a href="javascript:void(0)" id="cancel-comment-reply-link" onclick="cancel_reply()">Cancel reply</a>
+                </small>
+            </div>
+            </div>
+        </form>
+    </div><!-- #respond -->
+
+</div><!-- #comments .comments-area -->
+
+
+
